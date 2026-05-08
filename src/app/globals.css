@@ -43,7 +43,23 @@
 } */
 
 body {
-  background: hsl(var(--navy-950));
-  color: hsl(var(--gray-50));
   font-family: var(--font-josefin-sans);
+}
+
+.light-mode {
+  background: hsl(var(--gray-300));
+  background-image: url("/bg-mobile-light.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  color: hsl(var(--navy-850));
+}
+
+.dark-mode {
+  background: hsl(var(--navy-950));
+  background-image: url("/bg-mobile-dark.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  color: hsl(var(--gray-50));
 }

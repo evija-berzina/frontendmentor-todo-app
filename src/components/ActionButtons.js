@@ -1,7 +1,7 @@
-export default function ActionButtons() {
+export default function ActionButtons({ isDarkMode }) {
   return (
     <div className="flex flex-col justify-between items-center w-full gap-4 mb-12 md:flex-row">
-      <div className="flex flex-row justify-center gap-4 items-center w-full bg-[hsl(var(--navy-900))] px-4 py-3 rounded-md">
+      <div className={`flex flex-row justify-center gap-4 items-center w-full bg-[hsl(var(--gray-50))] px-4 py-3 rounded-md ${isDarkMode ? 'bg-[hsl(var(--navy-900))]' : ''}`}>
         <button className="cursor-pointer">All</button>
         <button className="cursor-pointer">Active</button>
         <button className="cursor-pointer">Completed</button>

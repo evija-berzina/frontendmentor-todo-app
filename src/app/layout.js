@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${josefinSans.variable} h-full antialiased`}
     >
-      <body className="flex flex-col px-8 py-16">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
