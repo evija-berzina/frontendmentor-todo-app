@@ -9,6 +9,10 @@ import Footer from "../components/Footer";
 export default function Home() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  const [inputValue, setInputValue] = useState("");
+
+  const [todos, setTodos] = useState([]);
 
   return (
     <div className={`w-full px-8 py-16 min-h-screen ${isDarkMode ? "dark-mode" : "light-mode"}`}>
@@ -18,9 +22,14 @@ export default function Home() {
       />
       <TodoInput 
         isDarkMode={isDarkMode}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        todos={todos}
+        setTodos={setTodos}
       />
       <TodoList
         isDarkMode={isDarkMode}
+        todos={todos}
       />
       <ActionButtons
         isDarkMode={isDarkMode}
