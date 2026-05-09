@@ -49,6 +49,7 @@ export default function TodoList({ isDarkMode, todos, setTodos }) {
       </li>
       <TodoFooter
         isDarkMode={isDarkMode}
+        todos={todos}
       />
     </ul>
   );
