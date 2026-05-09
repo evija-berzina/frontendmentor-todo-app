@@ -30,6 +30,7 @@ export default function Home() {
       <TodoList
         isDarkMode={isDarkMode}
         todos={todos}
+        setTodos={setTodos}
       />
       <ActionButtons
         isDarkMode={isDarkMode}

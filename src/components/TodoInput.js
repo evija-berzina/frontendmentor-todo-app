@@ -1,4 +1,11 @@
+"use client";
+import { useId } from "react";
+
 export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos, setTodos }) {
+
+  function generateId() {
+    return crypto.randomUUID()
+  }
 
   function handleTodoInput(e) {
     // Prevent the browser from reloading the page
@@ -6,7 +13,10 @@ export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos
 
     setTodos((prev) => [
       ...prev, 
-      {text: inputValue}
+      {
+        id: generateId(),
+        text: inputValue
+      }
     ]);
 
     setInputValue("");
