@@ -1,6 +1,3 @@
-"use client";
-import { useId } from "react";
-
 export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos, setTodos }) {
 
   function generateId() {
@@ -15,7 +12,8 @@ export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos
       ...prev, 
       {
         id: generateId(),
-        text: inputValue
+        text: inputValue,
+        checked: false
       }
     ]);
 
