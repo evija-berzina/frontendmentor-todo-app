@@ -25,6 +25,12 @@ export default function TodoList({ isDarkMode, todos, setTodos }) {
     setTodos(newTodos);
   }
 
+  function deleteCheckedTodos() {
+    const newTodos = todos.filter((todo) =>  !todo.checked);
+
+    setTodos(newTodos);
+  }
+
   return (
     <ul className="rounded-md overflow-hidden w-full bg-[hsl(var(--gray-50))] mb-6">
       {todos.map((todo) => (
@@ -68,6 +74,7 @@ export default function TodoList({ isDarkMode, todos, setTodos }) {
       <TodoFooter
         isDarkMode={isDarkMode}
         todos={todos}
+        deleteCheckedTodos={deleteCheckedTodos}
       />
     </ul>
   );
