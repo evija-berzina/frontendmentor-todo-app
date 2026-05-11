@@ -14,6 +14,8 @@ export default function Home() {
 
   const [todos, setTodos] = useState([]);
 
+  const [currentFilter, setCurrentFilter] = useState("all");
+
   return (
     <div className={`w-full px-8 py-16 min-h-screen ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <Header
@@ -31,9 +33,11 @@ export default function Home() {
         isDarkMode={isDarkMode}
         todos={todos}
         setTodos={setTodos}
+        currentFilter={currentFilter}
       />
       <ActionButtons
         isDarkMode={isDarkMode}
+        setCurrentFilter={setCurrentFilter}
       />
       <Footer />
     </div>

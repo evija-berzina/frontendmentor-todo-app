@@ -4,7 +4,7 @@ import IcoCross from "../assets/icon-cross.svg";
 import IconCheck from "../assets/icon-check.svg";
 import TodoFooter from "./TodoFooter";
 
-export default function TodoList({ isDarkMode, todos, setTodos }) {
+export default function TodoList({ isDarkMode, todos, setTodos, currentFilter }) {
 
   function isChecked(id) {
     const newTodos = todos.map((todo) => {
@@ -26,14 +26,32 @@ export default function TodoList({ isDarkMode, todos, setTodos }) {
   }
 
   function deleteCheckedTodos() {
-    const newTodos = todos.filter((todo) =>  !todo.checked);
+    const newTodos = todos.filter((todo) => !todo.checked);
 
     setTodos(newTodos);
   }
 
+  function getFilteredTodos() {
+    switch(currentFilter) {
+      case "completed":
+      return todos.filter((todo) => todo.checked);
+
+      case "active":
+      return todos.filter((todo) => !todo.checked);
+
+      case "all":
+        return todos;
+
+      default:
+        return todos; // šis ir fallback
+    }
+  }
+
+  const filteredTodos = getFilteredTodos();
+
   return (
     <ul className="rounded-md overflow-hidden w-full bg-[hsl(var(--gray-50))] mb-6">
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
           <li key={todo.id} className={`flex flex-row justify-between items-center gap-4 w-full bg-[hsl(var(--gray-50))] px-4 py-3 border-b border-[hsl(var(--gray-600))] ${isDarkMode ? 'bg-[hsl(var(--navy-900))] border-[hsl(var(--purple-800))]' : ''}`}>
             <div className="flex flex-row gap-4 items-center">
               <label className="relative h-5 w-5">
@@ -73,8 +91,8 @@ export default function TodoList({ isDarkMode, todos, setTodos }) {
       </li>
       <TodoFooter
         isDarkMode={isDarkMode}
-        todos={todos}
         deleteCheckedTodos={deleteCheckedTodos}
+        filteredTodos={filteredTodos}
       />
     </ul>
   );
