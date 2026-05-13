@@ -37,6 +37,7 @@ export default function Home() {
       />
       <ActionButtons
         isDarkMode={isDarkMode}
+        currentFilter={currentFilter}
         setCurrentFilter={setCurrentFilter}
       />
       <Footer />
