@@ -20,21 +20,21 @@ export default function TodoItem({todo, isDarkMode, isChecked, deleteTodo}) {
       key={todo.id}
       ref={setNodeRef}
       style={style}
-      className={`flex flex-row justify-between items-center gap-4 w-full bg-[hsl(var(--gray-50))] px-4 py-3 border-b border-[hsl(var(--gray-600))] ${isDarkMode ? 'bg-[hsl(var(--navy-900))] border-[hsl(var(--purple-800))]' : ''}`}>
+      className={`flex flex-row justify-between items-center gap-4 w-full px-4 py-3 border-b border-[hsl(var(--gray-600))] bg-transparent last:border-b-0 ${isDarkMode ? 'bg-[hsl(var(--navy-900))] border-[hsl(var(--purple-800))]' : ''}`}>
       <div className="flex flex-row gap-4 items-center">
-        <label className="relative h-5 w-5">
+        <label className="relative h-6 w-6 cursor-pointer">
           <input
             type="checkbox"
             onClick={() => isChecked(todo.id)}
-            className={`appearance-none border border-[hsl(var(--gray-600))] h-5 w-5 rounded-2xl bg-transparent relative ${todo.checked === true ? "bg-linear-to-r from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)]" : "" } ${isDarkMode ? 'border-[hsl(var(--purple-800))]' : ''}`}
+            className={`appearance-none border border-[hsl(var(--gray-600))] h-6 w-6 rounded-2xl bg-transparent relative cursor-pointer transition-colors duration-200 hover:border hover:border-[hsl(var(--blue-800))] ${todo.checked === true ? "bg-linear-to-r from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] border-none" : "" } ${isDarkMode ? 'border-[hsl(var(--purple-800))]' : ''}`}
           />
-          {todo.checked === true && <Image src={IconCheck} alt="Remove todo" className="w-2 h-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
+          {todo.checked && <Image src={IconCheck} alt="Remove todo" className="w-3 h-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
         </label>
         
         <p className={`cursor-pointer ${todo.checked ? "line-through text-[hsl(var(--gray-600))]" : ""}`} {...attributes} {...listeners}>{todo.text}</p>
       </div>
       <button
-        className="cursor-pointer"
+        className="cursor-pointer w-3 h-3"
         onClick={() => deleteTodo(todo.id)}
       >
         <Image src={IcoCross} alt="Remove todo" className="w-3 h-3" />

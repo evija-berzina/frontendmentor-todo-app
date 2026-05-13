@@ -68,7 +68,7 @@ export default function TodoList({ isDarkMode, todos, setTodos, currentFilter })
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <ul className="rounded-md overflow-hidden w-full bg-[hsl(var(--gray-50))] mb-6">
+      <ul className={`rounded-md overflow-hidden w-full mb-6 ${isDarkMode ? 'bg-[hsl(var(--navy-900))]' : 'bg-[hsl(var(--gray-50))]'}`}>
         <SortableContext
           items={filteredTodos.map(todo => todo.id)}
           strategy={verticalListSortingStrategy}

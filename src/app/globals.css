@@ -4,6 +4,7 @@
 /* Primary */
 --blue-500: 220 98% 61%;
 --check-background: linear-gradient(90deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+--blue-800: 192 100% 67%;
 
 /* Light Theme */
 --gray-50: 0 0% 98%;
