@@ -18,29 +18,31 @@ export default function Home() {
 
   return (
     <div className={`w-full px-8 py-16 min-h-screen ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      <Header
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-      />
-      <TodoInput 
-        isDarkMode={isDarkMode}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        todos={todos}
-        setTodos={setTodos}
-      />
-      <TodoList
-        isDarkMode={isDarkMode}
-        todos={todos}
-        setTodos={setTodos}
-        currentFilter={currentFilter}
-      />
-      <ActionButtons
-        isDarkMode={isDarkMode}
-        currentFilter={currentFilter}
-        setCurrentFilter={setCurrentFilter}
-      />
-      <Footer />
+      <div className="w-full max-w-100 mx-auto">
+        <Header
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+        />
+        <TodoInput 
+          isDarkMode={isDarkMode}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          todos={todos}
+          setTodos={setTodos}
+        />
+        <TodoList
+          isDarkMode={isDarkMode}
+          todos={todos}
+          setTodos={setTodos}
+          currentFilter={currentFilter}
+        />
+        <ActionButtons
+          isDarkMode={isDarkMode}
+          currentFilter={currentFilter}
+          setCurrentFilter={setCurrentFilter}
+        />
+        <Footer />
+      </div>
     </div>
   );
 }
