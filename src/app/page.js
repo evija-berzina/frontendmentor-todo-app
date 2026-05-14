@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import TodoInput from "../components/TodoInput";
 import TodoList from "../components/TodoList";
@@ -15,6 +15,16 @@ export default function Home() {
   const [todos, setTodos] = useState([]);
 
   const [currentFilter, setCurrentFilter] = useState("all");
+
+  useEffect(() => {
+    async function fetchTodos() {
+      const res = await fetch("/api/todos");
+      const data = await res.json();
+      setTodos(data);
+    }
+
+    fetchTodos();
+  }, []);
 
   return (
     <div className={`w-full px-8 py-16 min-h-screen ${isDarkMode ? "dark-mode" : "light-mode"}`}>
