@@ -25,7 +25,7 @@ export default function TodoItem({todo, isDarkMode, isChecked, deleteTodo}) {
         <label className="relative h-6 w-6 cursor-pointer">
           <input
             type="checkbox"
-            onClick={() => isChecked(todo.id)}
+            onClick={() => isChecked(todo.id, todo.checked)}
             className={`appearance-none border border-[hsl(var(--gray-600))] h-6 w-6 rounded-2xl bg-transparent relative cursor-pointer transition-colors duration-200 hover:border hover:border-[hsl(var(--blue-800))] ${todo.checked === true ? "bg-linear-to-r from-[hsl(192,100%,67%)] to-[hsl(280,87%,65%)] border-none" : "" } ${isDarkMode ? 'border-[hsl(var(--purple-800))]' : ''}`}
           />
           {todo.checked && <Image src={IconCheck} alt="Remove todo" className="w-3 h-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}

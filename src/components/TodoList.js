@@ -7,27 +7,63 @@ import TodoFooter from "./TodoFooter";
 
 export default function TodoList({ isDarkMode, todos, setTodos, currentFilter }) {
 
-  function isChecked(id) {
-    const newTodos = todos.map((todo) => {
-      if (id === todo.id) {
-        return {...todo, checked: !todo.checked};
-      } else {
-        return {...todo};
-      }
+  async function isChecked(id, currentValue) {
+    // const newTodos = todos.map((todo) => {
+    //   if (id === todo.id) {
+    //     return {...todo, checked: !todo.checked};
+    //   } else {
+    //     return {...todo};
+    //   }
+    // });
+    // setTodos(newTodos) 
+    const res = await fetch(`/api/todos/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        checked: !currentValue,
+      }),
     });
-    setTodos(newTodos)
+
+    const updated = await res.json();
+
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? updated : todo
+      )
+    );
   }
 
-  function deleteTodo(id) {
-    const newTodos = todos.filter((todo) => id !== todo.id);
+  async function deleteTodo(id) {
+    // const newTodos = todos.filter((todo) => id !== todo.id);
 
-    setTodos(newTodos);
+    // setTodos(newTodos);
+    await fetch(`/api/todos/${id}`, {
+      method: "DELETE",
+    });
+
+    const res = await fetch("/api/todos");
+    const data = await res.json();
+
+    setTodos(data);
+    console.log("DELETE ID:", id);
   }
 
-  function deleteCheckedTodos() {
-    const newTodos = todos.filter((todo) => !todo.checked);
+  async function deleteCheckedTodos() {
+    // const newTodos = todos.filter((todo) => !todo.checked);
 
-    setTodos(newTodos);
+    // setTodos(newTodos);
+
+    await fetch("/api/todos/clear-completed", {
+      method: "DELETE",
+    });
+
+    const res = await fetch("/api/todos");
+    const data = await res.json();
+
+    setTodos(data);
+    console.log("Cleared completed todos");
   }
 
   function getFilteredTodos() {
