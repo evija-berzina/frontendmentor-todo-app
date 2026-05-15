@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div className={`w-full px-8 py-16 min-h-screen ${isDarkMode ? "dark-mode" : "light-mode"}`}>
-      <div className="w-full max-w-100 mx-auto">
+      <div className="w-full max-w-120 mx-auto">
         <Header
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
