@@ -1,8 +1,8 @@
 export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos, setTodos }) {
 
-  function generateId() {
-    return crypto.randomUUID()
-  }
+  // function generateId() {
+  //   return crypto.randomUUID()
+  // }
 
   async function handleTodoInput(e) {
     // Prevent the browser from reloading the page
@@ -16,6 +16,8 @@ export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos
     //     checked: false
     //   }
     // ]);
+
+    if(inputValue.trim() === "") return;
 
     await fetch("/api/todos", {
       method: "POST",
