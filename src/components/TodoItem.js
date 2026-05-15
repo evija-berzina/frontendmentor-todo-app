@@ -31,7 +31,7 @@ export default function TodoItem({todo, isDarkMode, isChecked, deleteTodo}) {
           {todo.checked && <Image src={IconCheck} alt="Remove todo" className="w-3 h-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
         </label>
         
-        <p className={`cursor-pointer ${todo.checked ? "line-through text-[hsl(var(--gray-600))]" : ""}`} {...attributes} {...listeners}>{todo.text}</p>
+        <p className={`wrap-break-word cursor-pointer ${todo.checked ? "line-through text-[hsl(var(--gray-600))]" : ""}`} {...attributes} {...listeners}>{todo.text}</p>
       </div>
       <button
         className="cursor-pointer w-3 h-3"
