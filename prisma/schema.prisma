@@ -17,4 +17,6 @@ model Todo {
   text      String
   checked   Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  userId    String
 }
