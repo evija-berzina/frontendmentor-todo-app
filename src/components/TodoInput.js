@@ -1,3 +1,5 @@
+import { getUserId } from "@/lib/user";
+
 export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos, setTodos }) {
 
   // function generateId() {
@@ -16,6 +18,7 @@ export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos
     //     checked: false
     //   }
     // ]);
+    const userId = getUserId();
 
     if(inputValue.trim() === "") return;
 
@@ -26,10 +29,11 @@ export default function TodoInput({ isDarkMode, inputValue, setInputValue, todos
       },
       body: JSON.stringify({
         text: inputValue,
+        userId: getUserId(),
       }),
     });
 
-    const res = await fetch("/api/todos");
+    const res = await fetch(`/api/todos?userId=${userId}`);
     const data = await res.json();
 
     setTodos(data);

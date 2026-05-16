@@ -4,6 +4,7 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { verticalListSortingStrategy } from "@dnd-kit/sortable";
 import TodoItem from "./TodoItem";
 import TodoFooter from "./TodoFooter";
+import { getUserId } from "@/lib/user";
 
 export default function TodoList({ isDarkMode, todos, setTodos, currentFilter }) {
 
@@ -39,11 +40,12 @@ export default function TodoList({ isDarkMode, todos, setTodos, currentFilter })
     // const newTodos = todos.filter((todo) => id !== todo.id);
 
     // setTodos(newTodos);
-    await fetch(`/api/todos/${id}`, {
+    const userId = getUserId();
+    await fetch(`/api/todos/${id}?userId=${userId}`, {
       method: "DELETE",
     });
 
-    const res = await fetch("/api/todos");
+    const res = await fetch(`/api/todos?userId=${userId}`);
     const data = await res.json();
 
     setTodos(data);
@@ -54,12 +56,13 @@ export default function TodoList({ isDarkMode, todos, setTodos, currentFilter })
     // const newTodos = todos.filter((todo) => !todo.checked);
 
     // setTodos(newTodos);
+    const userId = getUserId();
 
-    await fetch("/api/todos/clear-completed", {
+    await fetch(`/api/todos/clear-completed?userId=${userId}`, {
       method: "DELETE",
     });
 
-    const res = await fetch("/api/todos");
+    const res = await fetch(`/api/todos?userId=${userId}`);
     const data = await res.json();
 
     setTodos(data);
