@@ -1,8 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+  const userId = searchParams.get("userId");
+
   const todos = await prisma.todo.findMany({
+    where: userId ? { userId } : undefined,
     orderBy: {
       createdAt: "desc",
     },
@@ -17,6 +21,7 @@ export async function POST(request) {
   const newTodo = await prisma.todo.create({
     data: {
       text: body.text,
+      userId: body.userId,
     },
   });
 
